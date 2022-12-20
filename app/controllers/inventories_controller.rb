@@ -26,5 +26,4 @@ class InventoriesController < ApplicationController
     @inventory.destroy
     redirect_to inventories_index_path
   end
-
 end
