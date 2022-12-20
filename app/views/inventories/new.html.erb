@@ -1,0 +1,10 @@
+  <h2 class="text-indigo-600 text-xl my-4 py-4 ">
+    Create New Inventory
+  </h2>
+  <%= form_with model: @inventory, url: inventories_path do |form| %>
+    <%= form.text_field :name, class:"block w-full flex-1 border-black border-4 p-4 sm:text-sm", placeholder:"Title" %>
+
+    <%= form.text_area :description, class:"mt-4 block w-full border-black border-4 p-4 sm:text-sm", placeholder:"Description" %>
+
+    <%= form.submit class:"inline-flex justify-center text-indigo-600 my-4 mx-auto text-sm font-medium border-black border-4 py-2 px-4" %>
+<% end %>
