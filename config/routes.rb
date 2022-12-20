@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   #get 'inventories/index'
   #get 'inventories/show'
   #get 'foods/index'
+
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get '/public_recipes', to: 'recipes#public'
   
   resources :recipes do
     resources :recipe_foods
