@@ -1,4 +1,5 @@
 {
+
   "name": "Recipe_app",
   "version": "1.0.0",
   "description": "",
@@ -21,6 +22,7 @@
     "url": "https://github.com/edi-sipka/Recipe_app/issues"
   },
   "homepage": "https://github.com/edi-sipka/Recipe_app#readme",
+
   "devDependencies": {
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
