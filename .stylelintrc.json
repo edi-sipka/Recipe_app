@@ -25,9 +25,9 @@
           "screen"
         ]
       }
-    ],
-    "csstree/validator": true
-  },
-  "ignoreFiles": ["build/**", "dist/**", "**/reset*.css", "**/bootstrap*.css", "**/builds/**.css"]
+    ]
+  }, 
+  "csstree/validator": true,
+  "ignoreFiles": ["build/**", "dist/**", "**/reset*.css", "**/bootstrap*.css","app/assets/builds/**"]
 }
 
