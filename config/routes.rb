@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   #get 'recipe_foods/index'
   #get 'recipes/index'
   #get 'inventory_foods/index'
@@ -6,7 +7,7 @@ Rails.application.routes.draw do
   #get 'inventories/show'
   #get 'foods/index'
 
-  devise_for :users
+ 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   get '/public_recipes', to: 'recipes#public'
