@@ -1,0 +1,19 @@
+<div class='mt-3 d-flex align-items-center flex-column'>
+  <h1>Create New Food</h1>
+   <%= form_with model: @food  do |form| %>
+   
+    <div class="mb-3">
+     <%= form.text_field :name, placeholder:"Enter Food name", class:"form-control"%>
+   </div>
+   <h2>Enter food measurement unit</h2>
+    <div class="mb-3">
+        <%= form.select :measurement_unit, [["grams"], ["kilos"], ["liters"], ["milliliters"]]%>
+     </div>
+     <div class="mb-3">
+     <%= form.text_area :price, placeholder:"Enter Your Price", class:"form-control" %>
+     </div>
+    <div class="mb-3">
+      <%= form.submit "Add New Food", class:"bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded" %>
+     </div>
+  <% end %>
+ </div>
