@@ -1,0 +1,10 @@
+  <h2 class="text-indigo-600 text-xl my-4 py-4 ">
+    Create New Inventory Food
+  </h2>
+  <%= form_with model: @inventory_food, url: inventory_inventory_foods_path do |form| %>
+    <%= form.number_field :name, class:"block w-full flex-1 border-black border-4 p-4 sm:text-sm", placeholder:"Quantity" %>
+
+    <%= form.select :food_id, @foods.map {|food| [food.name, food.id] } , class:"mt-4 block w-full border-black border-4 p-4 sm:text-sm"%>
+
+    <%= form.submit "Add Inventory Food",  class:"inline-flex justify-center text-indigo-600 my-4 mx-auto text-sm font-medium border-black border-4 py-2 px-4" %>
+<% end %>
