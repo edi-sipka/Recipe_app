@@ -5,6 +5,10 @@ class InventoriesController < ApplicationController
 
   def show
     @inventory = Inventory.find(params[:id])
+    @inventory_food = InventoryFood.find_by(id: params[:id])
+    return unless @inventory_food.nil?
+
+    render 'show'
   end
 
   def new
