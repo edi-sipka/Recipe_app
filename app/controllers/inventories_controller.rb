@@ -6,9 +6,9 @@ class InventoriesController < ApplicationController
   def show
     @inventory = Inventory.find(params[:id])
     @inventory_food = InventoryFood.find_by(id: params[:id])
-    if @inventory_food.nil?
-      render "show"
-    end
+    return unless @inventory_food.nil?
+
+    render 'show'
   end
 
   def new

@@ -10,9 +10,9 @@ class InventoryFoodsController < ApplicationController
   def create
     @inventory_food = InventoryFood.new(params[:inventory_food])
     if @inventory_food.save
-      redirect_to @inventory_food, :notice => "Successfully created inventory food."
+      redirect_to @inventory_food, notice: 'Successfully created inventory food.'
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
