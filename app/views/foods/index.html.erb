@@ -12,10 +12,11 @@
       <% @foods.each do |food| %>
         <tr>
           <%= render partial: "food_lists", locals: {data: food, price: true, qty: false} %>
-          <td class="border border-slate-600 p-4 text-xs" ><%= link_to "Delete", food_path(food.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
+          <td class="border border-slate-600 p-4 text-xs" ><%= button_to "Delete", food_path(food.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
         </tr>
       <% end %>
 
     </tbody>
   </table>
 </div>
+ <%= link_to 'Add Food', new_food_path, class:'bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded' %> 
