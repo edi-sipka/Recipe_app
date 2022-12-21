@@ -1,3 +1,6 @@
 class FoodsController < ApplicationController
-  def index; end
+  def index
+    @foods = Food.all
+  end
+
 end
