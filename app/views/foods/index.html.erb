@@ -1,22 +1,26 @@
-<div class="mt-2">
-  <table class="m-auto border border-slate-500">
+
+<div class="mt-40 ">
+  <table class="m-auto border border-slate-500 ">
     <thead>
-      <tr>
-        <th class="border border-slate-600 p-4"> Food </th>
-        <th class="border border-slate-600 p-4"> Measurement Unit </th>
-        <th class="border border-slate-600 p-4"> Price </th>
-        <th class="border border-slate-600 p-4"> Actions </th>
+      <tr class="bg-blue-500 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+        <th class="border border-slate-600 p-4 text-white font-semibold "> Food </th>
+        <th class="border border-slate-600 p-4 text-white font-semibold"> Measurement Unit </th>
+        <th class="border border-slate-600 p-4 text-white font-semibold"> Price </th>
+        <th class="border border-slate-600 p-4 text-white font-semibold "> Actions </th>
       </tr>
     </thead>
     <tbody>
       <% @foods.each do |food| %>
         <tr>
           <%= render partial: "food_lists", locals: {data: food, price: true, qty: false} %>
-          <td class="border border-slate-600 p-4 text-xs" ><%= button_to "Delete", food_path(food.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
+          <td class="border border-slate-600 p-4 text-red-600 font-semibold" ><%= button_to "Delete", food_path(food.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
         </tr>
+        
       <% end %>
 
     </tbody>
   </table>
+  <div class="flex justify-center items-center mt-3">
+  <%= link_to 'Add Food', new_food_path, class:'bg-blue-500 px-4 py-2 font-semibold text-white inline-flex space-x-2 rounded' %> 
+  </div>
 </div>
- <%= link_to 'Add Food', new_food_path, class:'bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded' %> 
