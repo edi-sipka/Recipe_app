@@ -1,5 +1,5 @@
 
-<div class="w-1/2 m-auto text-sm m-8 flex flex-col gap-8">
+<div class="w-1/2 m-auto text-sm flex flex-col gap-8">
   <h1 class="text-4xl font-bold text-center"><%= @inventory.name %></h1>
 
   <div class="flex justify-between">
@@ -12,6 +12,6 @@
   </div>
 </div>
 
-<hr class="my-4 mx-auto h-1 w-1/2 rounded border-0 md:mb-10 md:mt-4 dark:bg-gray-900">
+<hr class="my-4 mx-auto h-1 w-1/2 rounded border-0 md:mb-10 md:mt-4 bg-black">
 
 <%= render partial: 'inventory_foods/inventory_food_lists', locals: {inventory: @inventory} %>
