@@ -2,20 +2,20 @@ class FoodsController < ApplicationController
   def index
     @foods = Food.all
   end
-  
-  def show 
-  	@food = Food.find(params[:id])
+
+  def show
+    @food = Food.find(params[:id])
     redirect_to foods_path
   end
 
-  def new 
+  def new
     @food = Food.new
   end
 
-  def create 
+  def create
     @food = Food.new(food_params)
 
-    if @food.save 
+    if @food.save
       flash[:success] = 'Food added successfully'
       redirect_to foods_path
     else
@@ -30,9 +30,9 @@ class FoodsController < ApplicationController
 
     redirect_back(fallback_location: root_path)
   end
-  
-  private 
-  
+
+  private
+
   def food_params
     params.require(:food).permit(:name, :price, :measurement_unit)
   end
