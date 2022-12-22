@@ -17,3 +17,9 @@ InventoryFood.create!([
     {food_id: 3, quantity: 4, inventory_id: 1},
     {food_id: 4, quantity: 1, inventory_id: 2}
 ])
+
+Recipe.create!([
+    {name: 'Chicken Salad', description: 'Chicken Salad', cooking_time: 60, preparation_time: 30, public: true},
+    {name: 'Pineapple Chicken', description: 'Pineapple Chicken', cooking_time: 60, preparation_time: 30, public: true},
+    {name: 'Apple Pie', description: 'Apple Pie', cooking_time: 60, preparation_time: 30, public: true}
+])
