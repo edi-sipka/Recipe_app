@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Food, type: :model do
  subject do
-  @user = User.create!(name:"Edi", role:"user", email:"e2e@gmail.com", password:"ediedi" )
-  Food.create(name:"banana", measurement_unit:"grams", price:2, user:@user)
+  Food.create(name:"banana", measurement_unit:"grams", price:2)
  end
  before(:each) {subject.save}
 
@@ -15,8 +14,7 @@ RSpec.describe Food, type: :model do
   expect(subject.price).to eql(2)
  end
 
- it "Price should be 0 or higher" do
-  subject.price = -5
-  expect(subject).to_not be_valid
- end
+ it 'should have Measurement unit grams' do
+    expect(subject.measurement_unit).to eql('grams')
+  end
 end

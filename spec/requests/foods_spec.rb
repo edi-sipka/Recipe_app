@@ -2,9 +2,14 @@ require 'rails_helper'
 
 RSpec.describe 'Foods', type: :request do
   describe 'GET /index' do
-    it 'returns http success' do
-      get '/foods/index'
-      expect(response).to have_http_status(:success)
+    before(:each) do
+     get root_path
+   end
+
+  
+ it "should render root path" do
+  expect(response.status).to eq(302)
     end
+
   end
 end
