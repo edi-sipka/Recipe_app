@@ -1,5 +1,4 @@
 class RecipeFoodsController < ApplicationController
-
   def index
     @recipe_foods = RecipeFood.all
   end
@@ -13,6 +12,7 @@ class RecipeFoodsController < ApplicationController
   def create
     @recipe_food = RecipeFood.new(params.require(:recipe_food).permit(:quantity, :food_id))
     @recipe = Recipe.find(params[:recipe_id])
+
     @recipe_food.recipe_id = @recipe.id
 
     if @recipe_food.save
