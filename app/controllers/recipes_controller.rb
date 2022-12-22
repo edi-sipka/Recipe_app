@@ -10,8 +10,8 @@ class RecipesController < ApplicationController
   end
 
   def create
+    @recipe = Recipe.new(params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public))
     @recipe.user = current_user
-    @recipe = Recipe.new(params.require(:recipe).permit(@id, :name, :preparation_time, :cooking_time, :description, :public))
     if @recipe.save
       redirect_to recipes_path
     else
@@ -39,9 +39,5 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
     redirect_back(fallback_location: recipes_path)
-  end
-
-  def recipe_params
-    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
   end
 end
