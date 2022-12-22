@@ -1,0 +1,13 @@
+  <h2 class="text-indigo-600 text-xl my-4 py-4 ">
+    Add New Recipe
+  </h2>
+  <%= form_with model: @recipe, url: recipes_path do |form| %>
+    <%= form.text_field :name, class:"mt-4 block w-full flex-1 border-black border-4 p-4 sm:text-sm", placeholder:"Name" %>
+    <%= form.text_field :preparation_time, class:"mt-4 block w-full flex-1 border-black border-4 p-4 sm:text-sm", placeholder:"Preparation time" %>
+    <%= form.text_field :cooking_time, class:"mt-4 block w-full flex-1 border-black border-4 p-4 sm:text-sm", placeholder:"Cooking time" %>
+    <%= form.text_area :description, class:"mt-4 block w-full border-black border-4 p-4 sm:text-sm", placeholder:"Description" %>
+
+    <%= form.submit class:"inline-flex justify-center text-indigo-600 my-4 mx-auto text-sm font-medium border-black border-4 py-2 px-4" %>
+    <%= form.label :public, class:"ml-5 flex-1 p-4 sm:text-sm" %>
+    <%= form.check_box :public, class:"ml-5 flex-1 border-black border-4 p-4" %>
+<% end %>
