@@ -1,0 +1,38 @@
+<h2><%= @recipe.name %></h2>
+<h3>Preparation time: </h3><h3><%= @recipe.preparation_time %></h3>
+<h3>Cooking time: </h3><h3><%= @recipe.cooking_time %></h3>
+<h3>Description</h3><p><%= @recipe.description %></p>
+<%= button_to "Generate shopping list", recipe_path(@recipe.id) , class: "text-sm text-indigo-600 hover:text-indigo-500 ml-2" %>
+<%= button_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id) , class: "text-sm text-indigo-600 hover:text-indigo-500 ml-2" %>
+<h2>The Recipe details go here: </h2>
+<div class="mt-2">
+  <% if @recipe_foods.empty? %>
+    <h1 class="text-2xl font-bold text-center text-indigo-600">
+      <%= render partial: "errors/404"%>
+    </h1>
+  <% else %>
+    <table class="m-auto border border-slate-500">
+      <thead>
+        <tr>
+          <th class="border border-slate-600 p-4"> Food </th>
+          <th class="border border-slate-600 p-4"> Quantity </th>
+          <th class="border border-slate-600 p-4"> Unit </th>
+          <th class="border border-slate-600 p-4"> Value </th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @Recipe.recipe_foods.each do |recipe_food| %>
+          <tr>
+            <%= render partial: "foods/food_lists", locals: {data: recipe_food.food, qty: recipe_food.quantity, unit: Food.find(recipe_food.food_id).measurement_unit, price: recipe_food.quantity * Food.find(recipe_food.food_id).price} %>
+            <td class="border border-slate-600 p-4 text-xs text-indigo-600 hover:text-indigo-500" >
+              <%= button_to "Edit", recipe_recipe_food_path(@recipe.id, recipe_food.id) , method: :delete, class: "text-sm text-indigo-600 hover:text-indigo-500 ml-2" %>
+              <%= button_to "Remove", recipe_recipe_food_path(@recipe.id, recipe_food.id) , method: :edit, class: "text-sm text-indigo-600 hover:text-indigo-500 ml-2" %>
+            </td>
+          </tr>
+        <% end %>
+
+      </tbody>
+    </table>
+  <% end %>
+</div>
