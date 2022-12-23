@@ -13,11 +13,11 @@ class ShoppingListsController < ApplicationController
     @total_price = 0
 
     @recipe_foods.each do |recipe_food|
-    inventory_food = @inventory_foods.find { |inventory_food| inventory_food.food_id == recipe_food.food_id }
+      inventory_food = @inventory_foods.find { |i_food| i_food.food_id == recipe_food.food_id }
       if inventory_food
-        quantity =  recipe_food.quantity - inventory_food.quantity
-        if quantity > 0
-          @shopping_lists << { name: recipe_food.food.name, quantity: quantity, price: recipe_food.food.price, total_price: recipe_food.food.price * quantity}
+        quantity = recipe_food.quantity - inventory_food.quantity
+        if quantity.positive?
+          @shopping_lists << { name: recipe_food.food.name, quantity:, price: recipe_food.food.price, total_price: recipe_food.food.price * quantity }
           @total_price += recipe_food.food.price * quantity
         end
       else
@@ -25,6 +25,5 @@ class ShoppingListsController < ApplicationController
         @total_price += recipe_food.food.price * recipe_food.quantity
       end
     end
-
   end
 end
