@@ -6,12 +6,13 @@ class RecipeFoodsController < ApplicationController
   def new
     @recipe_food = RecipeFood.new
     @recipe = Recipe.find(params[:recipe_id])
-    @foods = Food.all.where(user_id: current_user.id)
+    @foods = Food.where(user_id: current_user.id)
   end
 
   def create
     @recipe_food = RecipeFood.new(params.require(:recipe_food).permit(:quantity, :food_id))
     @recipe = Recipe.find(params[:recipe_id])
+
     @recipe_food.recipe_id = @recipe.id
 
     if @recipe_food.save

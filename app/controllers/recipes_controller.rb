@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, except: [:public]
+  before_action :authenticate_user!, except: %i[public show]
 
   def index
     @recipes = Recipe.all
@@ -22,6 +22,8 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @recipe_foods = @recipe.recipe_foods.includes(:food)
+    @inventories = Inventory.all
   end
 
   def public
