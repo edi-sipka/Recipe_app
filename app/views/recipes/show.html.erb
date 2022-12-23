@@ -21,8 +21,8 @@
 	</div>
 	<% if !current_user.nil? && current_user.id == @recipe.user_id %>
 		<div class="w-full my-4 flex justify-between items-center">
-			<%= button_to "Generate shopping list", recipe_path(@recipe.id) , class: "bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded" %>
-			<%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id) , class: "bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded" %>
+			<%= link_to "Generate shopping list", new_shopping_list_path(@recipe.id), {remote: true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#modal-window'} %>
+			<%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id), class: "bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded" %>
 		</div>
 	<% end %>
 	</div>
