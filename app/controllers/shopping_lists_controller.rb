@@ -7,7 +7,7 @@ class ShoppingListsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @recipe_foods = @recipe.recipe_foods.includes(:food)
     @inventory = Inventory.find(params[:inventory_id])
-    @inventory_foods = @inventory.inventory_foods.includes(:food)
+    @inventory_foods = @inventory.inventory_foods
 
     @shopping_lists = []
     @total_price = 0
