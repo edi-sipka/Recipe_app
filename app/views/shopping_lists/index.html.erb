@@ -27,6 +27,7 @@
             <th class="border border-slate-600 p-4"> Food </th>
             <th class="border border-slate-600 p-4"> Quantity </th>
             <th class="border border-slate-600 p-4"> Price </th>
+            <th class="border border-slate-600 p-4"> Total Price </th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +36,7 @@
               <td class="border border-slate-600 p-4" ><%= shopping_list[:name] %></td>
               <td class="border border-slate-600 p-4" ><%= shopping_list[:quantity] %></td>
               <td class="border border-slate-600 p-4" ><%= shopping_list[:price] %></td>
+              <td class="border border-slate-600 p-4" ><%= shopping_list[:total_price] %></td>
             </tr>
           <% end %>
         </tbody>

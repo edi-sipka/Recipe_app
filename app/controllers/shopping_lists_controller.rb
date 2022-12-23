@@ -5,26 +5,26 @@ class ShoppingListsController < ApplicationController
 
   def index
     @recipe = Recipe.find(params[:recipe_id])
-    @recipe_foods = RecipeFood.where(recipe_id: @recipe.id)
+    @recipe_foods = @recipe.recipe_foods.includes(:food)
     @inventory = Inventory.find(params[:inventory_id])
+    @inventory_foods = @inventory.inventory_foods.includes(:food)
 
     @shopping_lists = []
     @total_price = 0
 
     @recipe_foods.each do |recipe_food|
-      inventory_food = InventoryFood.find(recipe_food.food_id)
-      if !inventory_food.nil?
-        quantity = recipe_food.quantity - inventory_food.quantity
-        price = quantity * recipe_food.food.price
-
-        if quantity.positive?
-          @total_price += price
-          @shopping_lists << { name: recipe_food.food.name, quantity: quantity, price: price}
+    inventory_food = @inventory_foods.find { |inventory_food| inventory_food.food_id == recipe_food.food_id }
+      if inventory_food
+        quantity =  recipe_food.quantity - inventory_food.quantity
+        if quantity > 0
+          @shopping_lists << { name: recipe_food.food.name, quantity: quantity, price: recipe_food.food.price, total_price: recipe_food.food.price * quantity}
+          @total_price += recipe_food.food.price * quantity
         end
+      else
+        @shopping_lists << { name: recipe_food.food.name, quantity: recipe_food.quantity, price: recipe_food.food.price, total_price: recipe_food.food.price * recipe_food.quantity }
+        @total_price += recipe_food.food.price * recipe_food.quantity
       end
     end
-
-    @shopping_lists
 
   end
 end
