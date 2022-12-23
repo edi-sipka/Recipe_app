@@ -1,0 +1,78 @@
+<div class="m-2 border-2 border-black p-2 items-center rounded">
+	<div class="w-full my-4 flex justify-between items-center">
+	<h2 class="m-4 text-indigo-black font-bold"><%= @recipe.name %></h2>
+	<% if !current_user.nil? && current_user.id == @recipe.user_id %>
+		<%= form_with model:@recipe, url:recipe_path(@recipe.id), html:{method: :put} do |form| %>
+		    <div class="p-2 border-black border-1 rounded">
+		      <%= form.label :public, class:"text-xl ml-5 flex-1 p-4" %>
+		      <%= form.check_box :public, class: "mr-5 flex-1 border-black border-4 p-4 rounded", onchange: "this.form.submit()" %>
+		    </div>
+		<% end %>
+	<% end %>
+	</div>
+	<div class="text-indigo-bold w-full m-2 flex justify-start items-center">
+	<h3 class="font-semibold">Preparation time: </h3><h6 class="ml-2"> <%= @recipe.preparation_time %></h6>
+	</div>
+	<div class="text-indigo-black w-full m-2 flex justify-start items-center">
+	<h3 class="font-semibold">Cooking time: </h3><h6 class="ml-2"> <%= @recipe.cooking_time %></h6>
+	</div>
+	<div class="w-full m-2 flex justify-start items-center">
+	<h3 class="text-indigo-black font-semibold">Description: </h3><p class="ml-2 w-full"> <%= @recipe.description %></p>
+	</div>
+	<% if !current_user.nil? && current_user.id == @recipe.user_id %>
+		<div class="w-full my-4 flex justify-between items-center">
+			<%= button_to "Generate shopping list", recipe_path(@recipe.id) , class: "bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded" %>
+			<%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id) , class: "bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded" %>
+		</div>
+	<% end %>
+	</div>
+<h2 class="m-4 text-indigo-black font-bold">The Recipe details go here: </h2>
+<div class="mt-2">
+  <% if !current_user.nil? && @recipe.recipe_foods.empty? %>
+    <h1 class="text-2xl font-bold text-center text-indigo-600">
+      <%= render partial: "errors/404"%>
+    </h1>
+  <% else %>
+    <table class="m-auto border border-slate-500">
+      <thead>
+        <tr>
+          <th class="border border-slate-600 p-4"> Food </th>
+          <th class="border border-slate-600 p-4"> Unit </th>
+          <th class="border border-slate-600 p-4"> Quantity </th>
+					<th class="border border-slate-600 p-4"> Unit Price </th>
+          <th class="border border-slate-600 p-4"> Total Price </th>
+					<% if !current_user.nil? && current_user.id == @recipe.user_id %>
+          	<th class="border border-slate-600 p-4"> Action </th>
+					<% end %>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @recipe.recipe_foods.each do |recipe_food| %>
+<tr>
+<td class="text-center border border-slate-600 p-4" >
+  <%= recipe_food.food.name %>
+</td>
+<td class="text-center border border-slate-600 p-4" >
+  <%= recipe_food.food.measurement_unit %>
+</td>
+  <td class="text-center border border-slate-600 p-4" >
+      <%= recipe_food.quantity %>
+  </td>
+	  <td class="text-center border border-slate-600 p-4" >
+      $<%= recipe_food.food.price %>
+  </td>
+  <td class="text-center border border-slate-600 p-4" >
+      $<%= recipe_food.quantity.to_i * recipe_food.food.price.to_i %>
+  </td>
+	<% if !current_user.nil? && current_user.id == @recipe.user_id %>
+	  <td class="border border-slate-600 p-4" >
+      <%= button_to "Remove", recipe_recipe_food_path(@recipe.id, recipe_food.id) , method: :delete, class: "text-sm text-indigo-600 hover:text-indigo-500 ml-2" %>
+  	</td>
+	<% end %>
+	</tr>
+	<% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
