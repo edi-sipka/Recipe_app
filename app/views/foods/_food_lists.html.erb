@@ -1,15 +1,10 @@
 
-<% if false %>
-<td class="border border-slate-600 p-4" ><%= data.food.name %></td>
-<td class="border border-slate-600 p-4" ><%= data.quantity %> <%= data.food.measurement_unit %></td>
-<% end %>
-
 <td class="border border-slate-600 p-4" >
   <%= data.name %>
 </td>
 <td class="border border-slate-600 p-4" >
-  <% if qty %>
-    <%= qty %>
+  <% if quantity %>
+    <%= quantity %>
   <% end %>
   <%= data.measurement_unit %>
 </td>

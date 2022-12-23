@@ -16,7 +16,7 @@
 
         <% inventory.inventory_foods.each do |inventory_food| %>
           <tr>
-            <%= render partial: "foods/food_lists", locals: {data: inventory_food.food, price: false, qty: inventory_food.quantity} %>
+            <%= render partial: "foods/food_lists", locals: {data: inventory_food.food, price: false, quantity: inventory_food.quantity} %>
             <td class="border border-slate-600 p-4 text-xs text-indigo-600 hover:text-indigo-500" >
               <%= button_to "Remove", inventory_inventory_food_path(inventory.id, inventory_food.id) , method: :delete, class: "text-sm text-indigo-600 hover:text-indigo-500 ml-2" %>
             </td>
