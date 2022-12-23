@@ -4,13 +4,15 @@ class InventoryFoodsController < ApplicationController
   end
 
   def new
+    @foods = Food.all
     @inventory_food = InventoryFood.new
   end
 
   def create
-    @inventory_food = InventoryFood.new(params[:inventory_food])
+    @inventory_food = InventoryFood.new(params.require(:inventory_food).permit(:quantity, :food_id))
+    @inventory_food.inventory = Inventory.find(params[:inventory_id])
     if @inventory_food.save
-      redirect_to @inventory_food, notice: 'Successfully created inventory food.'
+      redirect_to inventory_path(@inventory_food.inventory_id), notice: 'Successfully created inventory food.'
     else
       render action: 'new'
     end
@@ -18,8 +20,7 @@ class InventoryFoodsController < ApplicationController
 
   def destroy
     @inventory_food = InventoryFood.find(params[:id])
-    @food = Food.find(@inventory_food.food_id)
-    @food.destroy
+    @inventory_food.destroy
 
     redirect_back(fallback_location: root_path)
   end

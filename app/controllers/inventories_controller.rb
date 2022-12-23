@@ -4,11 +4,9 @@ class InventoriesController < ApplicationController
   end
 
   def show
-    @inventory = Inventory.find(params[:id])
-    @inventory_food = InventoryFood.find_by(id: params[:id])
-    return unless @inventory_food.nil?
-
-    render 'show'
+    @inventory = Inventory.includes(inventory_foods: :food).find(params[:id])
+    @inventory_food = @inventory.inventory_foods.find_by(id: params[:id])
+    render 'show' if @inventory_food.nil?
   end
 
   def new

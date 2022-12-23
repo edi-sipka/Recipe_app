@@ -14,12 +14,13 @@ class FoodsController < ApplicationController
 
   def create
     @food = Food.new(food_params)
+    @food.user = current_user
 
     if @food.save
       flash[:success] = 'Food added successfully'
       redirect_to foods_path
     else
-      flash.now[:error] = 'Error: Food could not be added'
+      flash[:error] = 'Error: Food could not be added'
       redirect_to new_food_path
     end
   end

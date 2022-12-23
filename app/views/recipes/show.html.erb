@@ -21,8 +21,8 @@
 	</div>
 	<% if !current_user.nil? && current_user.id == @recipe.user_id %>
 		<div class="w-full my-4 flex justify-between items-center">
-			<%= button_to "Generate shopping list", recipe_path(@recipe.id) , class: "bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded" %>
-			<%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id) , class: "bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded" %>
+			<%= link_to "Generate shopping list", new_recipe_shopping_list_path(@recipe.id), class: "bg-indigo-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded" %>
+			<%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id), class: "bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded" %>
 		</div>
 	<% end %>
 	</div>
@@ -49,29 +49,29 @@
       <tbody>
 
         <% @recipe.recipe_foods.each do |recipe_food| %>
-<tr>
-<td class="text-center border border-slate-600 p-4" >
-  <%= recipe_food.food.name %>
-</td>
-<td class="text-center border border-slate-600 p-4" >
-  <%= recipe_food.food.measurement_unit %>
-</td>
-  <td class="text-center border border-slate-600 p-4" >
-      <%= recipe_food.quantity %>
-  </td>
-	  <td class="text-center border border-slate-600 p-4" >
-      $<%= recipe_food.food.price %>
-  </td>
-  <td class="text-center border border-slate-600 p-4" >
-      $<%= recipe_food.quantity.to_i * recipe_food.food.price.to_i %>
-  </td>
-	<% if !current_user.nil? && current_user.id == @recipe.user_id %>
-	  <td class="border border-slate-600 p-4" >
-      <%= button_to "Remove", recipe_recipe_food_path(@recipe.id, recipe_food.id) , method: :delete, class: "text-sm text-indigo-600 hover:text-indigo-500 ml-2" %>
-  	</td>
-	<% end %>
-	</tr>
-	<% end %>
+					<tr>
+					<td class="text-center border border-slate-600 p-4" >
+						<%= recipe_food.food.name %>
+					</td>
+					<td class="text-center border border-slate-600 p-4" >
+						<%= recipe_food.food.measurement_unit %>
+					</td>
+						<td class="text-center border border-slate-600 p-4" >
+								<%= recipe_food.quantity %>
+						</td>
+							<td class="text-center border border-slate-600 p-4" >
+								$<%= recipe_food.food.price %>
+						</td>
+						<td class="text-center border border-slate-600 p-4" >
+								$<%= recipe_food.quantity.to_i * recipe_food.food.price.to_i %>
+						</td>
+						<% if !current_user.nil? && current_user.id == @recipe.user_id %>
+							<td class="border border-slate-600 p-4" >
+								<%= button_to "Remove", recipe_recipe_food_path(@recipe.id, recipe_food.id) , method: :delete, class: "text-sm text-indigo-600 hover:text-indigo-500 ml-2" %>
+							</td>
+						<% end %>
+						</tr>
+					<% end %>
       </tbody>
     </table>
   <% end %>
