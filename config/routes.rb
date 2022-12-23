@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
   get 'inventories/index'
-
-
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
   get '/public_recipes', to: 'recipes#public'
 
   resources :recipes, only: [:public, :index, :show, :new, :create, :destroy, :update] do
@@ -19,9 +15,8 @@ Rails.application.routes.draw do
 
   resources :foods, only: [:index, :new, :create, :destroy]
   resources :recipes do
-    resources :shopping_lists
-    resources :recipe_foods, only: [:new, :create, :destroy]
+    resources :shopping_lists, only: [:new, :index]
   end
 
-  resources :shopping_list
+  resources :shopping_lists
 end
