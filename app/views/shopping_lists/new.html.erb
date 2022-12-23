@@ -16,14 +16,13 @@
 
   <button id="generate-btn", class="bg-indigo-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">Generate</button>
 </div>
-
 <script>
   const button = document.getElementById("generate-btn");
-  const inventory_id = document.getElementById("inventories").value;
+  const inventory_id = document.getElementById("inventories");
   const recipe_id = document.getElementById("recipe").value;
 
   button.addEventListener("click", function() {
-    const url = "/shopping_lists?recipe_id=" + recipe_id + "&inventory_id=" + inventory_id;
+    const url = "/shopping_lists?recipe_id=" + recipe_id + "&inventory_id=" + inventory_id.value;
     window.location.href = url;
   });
 </script>
