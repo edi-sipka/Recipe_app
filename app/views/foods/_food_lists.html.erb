@@ -1,0 +1,16 @@
+
+<td class="border border-slate-600 p-4" >
+  <%= data.name %>
+</td>
+<td class="border border-slate-600 p-4" >
+  <% if quantity %>
+    <%= quantity %>
+  <% end %>
+  <%= data.measurement_unit %>
+</td>
+<% if price %>
+  <td class="border border-slate-600 p-4" >
+      <%= data.price %>
+  </td>
+<% end %>
+

@@ -1,0 +1,12 @@
+<h1 class="text-xl text-center font-bold py-2">New Recipe Food</h1>
+<div class="w-75 mx-auto">
+<%= form_with(model: [@recipe, @recipe_food])  do |form| %>
+	<%= form.label :quantity  %>
+  <%= form.number_field :quantity %>
+  <%= form.select :food_id, @foods.map { |food| [food.name, food.id] } %>
+  <div class="mt-4 w-1/2 flex justify-evenly items-center">
+    <%= form.submit "Add Food", class: "bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded" %>
+    <%= link_to "Back to recipes", recipes_path, class: "bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded" %>
+  </div>
+<%end%>
+</div>

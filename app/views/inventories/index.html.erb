@@ -1,0 +1,40 @@
+<div class="flex flex-1 justify-around items-center text-sm m-8">
+  <h1 class="text-2xl font-bold">Welcome!</h1>
+</div>
+<div class="mt-8">
+  <ul>
+    <% @inventories.each do |inventory| %>
+      <li class="m-8">
+
+        <div class="ml-4 md:flex md:flex-row border-black border-4 p-4">
+          <div class="md:w-1/4 font-medium ">
+            <h2 class="text-2xl text-gray-900">
+              <a href="/inventories/<%= inventory.id %>"> <%= inventory.name %> </a>
+            </h2>
+             <%= button_to "Remove", inventory_path(inventory.id) , method: :delete, class: "text-sm text-indigo-600 hover:text-indigo-500 ml-2" %>
+          </div>
+          <div class="md:w-3/4 items-end justify-end text-sm">
+            <p class="text-gray-500 ml-4"> <%= inventory.description %> </p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="mt-8">
+    <p>
+      <% if @inventories.empty? %>
+        <p>There are no Inventories :(</p>
+      <% end %>
+    </p>
+</div>
+<div class="flex flex-1 items-end justify-center text-sm">
+  <button type="button" class="text-indigo-600 hover:text-indigo-500 ml-4 text-xl border-black border-4 p-4 mx-8">
+    <a href="/inventories/new">Add Inventory</a>
+  </button>
+</div>
+
+
+
+

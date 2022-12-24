@@ -1,0 +1,47 @@
+<div class="w-1/2 m-auto text-sm flex flex-col gap-8">
+  <h1 class="text-4xl font-bold text-center">Shopping List</h1>
+
+  <div class="flex w-full text-indigo-600 text-sm border-2 py-2 px-4 ">
+    <div class="w-2/3">
+      <p>Number of food items to buy: <span class="font-bold"><%= @shopping_lists.length %></span></p>
+      <p>Total sum of food needed: <span class="font-bold"><%= @total_price %></span></p>
+    </div>
+    <div class="w-1/3">
+      <p>Recipe: <span class="font-bold"><%= @recipe.name %></span></p>
+      <p>Inventory: <span class="font-bold"><%= @inventory.name%></span></p>
+    </div>
+  </div>
+</div>
+
+<hr class="my-4 mx-auto h-1 w-1/2 rounded border-0 md:mb-10 md:mt-4 bg-black">
+
+<div class="mt-2">
+    <% if @shopping_lists.length.zero? %>
+      <h1 class="text-2xl font-bold text-center text-indigo-600">
+        <%= render partial: "errors/404"%>
+      </h1>
+    <% else %>
+      <table class="m-auto border border-slate-500">
+        <thead>
+          <tr>
+            <th class="border border-slate-600 p-4"> Food </th>
+            <th class="border border-slate-600 p-4"> Quantity </th>
+            <th class="border border-slate-600 p-4"> Price </th>
+            <th class="border border-slate-600 p-4"> Total Price </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @shopping_lists.each do |shopping_list| %>
+            <tr>
+              <td class="border border-slate-600 p-4" ><%= shopping_list[:name] %></td>
+              <td class="border border-slate-600 p-4" ><%= shopping_list[:quantity] %></td>
+              <td class="border border-slate-600 p-4" ><%= shopping_list[:price] %></td>
+              <td class="border border-slate-600 p-4" ><%= shopping_list[:total_price] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <%end%>
+</div>
+
+

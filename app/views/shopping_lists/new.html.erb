@@ -1,0 +1,28 @@
+<div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+  <h5 class="text-xl font-medium leading-normal text-gray-800">
+    Generate Shopping List
+  </h5>
+</div>
+
+<div class="modal-body flex relative p-4 gap-16">
+  <form id="shopping-form" class="w-1/4">
+    <select id="inventories" class="w-full">
+      <% @inventories.each do |inventory| %>
+        <option value="<%= inventory.id %>"><%= inventory.name %></option>
+      <% end %>
+    </select>
+    <input id="recipe" type="hidden" value="<%= params[:recipe_id] %>">
+  </form>
+
+  <button id="generate-btn", class="bg-indigo-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">Generate</button>
+</div>
+<script>
+  const button = document.getElementById("generate-btn");
+  const inventory_id = document.getElementById("inventories");
+  const recipe_id = document.getElementById("recipe").value;
+
+  button.addEventListener("click", function() {
+    const url = "/shopping_lists?recipe_id=" + recipe_id + "&inventory_id=" + inventory_id.value;
+    window.location.href = url;
+  });
+</script>

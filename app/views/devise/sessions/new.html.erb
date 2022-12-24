@@ -1,0 +1,51 @@
+<div class="bg-no-repeat bg-cover bg-center relative" style="background-image: url(https://images.unsplash.com/photo-1482137526803-25edd694e5c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);"><div class="absolute bg-gradient-to-b from-green-500 to-red-400 opacity-75 inset-0 z-0"></div>
+  <div class="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
+      <div class="flex-col flex  self-center p-10 sm:max-w-5xl xl:max-w-2xl  z-10">
+        <div class="self-start hidden lg:flex flex-col  text-white">
+          <img src="" class="mb-3">
+          <h1 class="mb-3 font-bold text-5xl">Welcome to Recipe App </h1>
+          <p class="pr-3">Create your Online Ordering, Restaurant and Food Delivery App. Your Application, Your brand , Your customers And Your online ordering system.</p>
+        </div>
+      </div>
+      <div class="flex justify-center self-center  z-10">
+        <div class="p-12 bg-white mx-auto rounded-2xl w-100 ">
+            <div class="mb-4">
+              <h3 class="font-semibold text-2xl text-gray-800">Sign In </h3>
+              <p class="text-gray-500">Please sign in to your account.</p>
+            </div>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "current-password", class:" w-full text-base px-4 py-2 border mb-3 border-gray-300 rounded-lg focus:outline-none focus:border-green-400" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Sign in", class:"w-full flex justify-center bg-green-400  hover:bg-green-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500 mt-5 mb-5" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+           
+            <div class="pt-5 text-center text-gray-400 text-xs">
+              <span>
+                Copyright © 2022
+                </span>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+

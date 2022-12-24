@@ -1,0 +1,33 @@
+<div class="flex flex-1 justify-around items-center text-sm m-8">
+  <h1 class="text-2xl font-bold">Welcome <%= current_user.name unless current_user.nil? %>!</h1>
+</div>
+<div class="mt-8">
+  <ul>
+    <% @recipes.each do |recipe| %>
+      <li class="m-8">
+
+        <div class="ml-4 md:flex md:flex-row border-black border-4 p-4">
+          <div class="md:w-1/4 font-medium ">
+            <h2 class="text-2xl text-gray-900">
+              <a href="/recipes/<%= recipe.id %>"> <%= recipe.name %> </a>
+            </h2>
+              <% if !current_user.nil? && recipe.user_id == current_user.id%>
+                <%= button_to "Remove", recipe_path(recipe.id) , method: :delete, class: "text-sm text-indigo-600 hover:text-indigo-500 ml-2" %>
+              <% end %>
+          </div>
+          <div class="md:w-3/4 items-end justify-end text-sm">
+            <p class="text-gray-500 ml-4"> <%= recipe.description %> </p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="mt-8">
+    <p>
+      <% if @recipes.empty? %>
+        <p>There are no Recipes :(</p>
+      <% end %>
+    </p>
+</div>
