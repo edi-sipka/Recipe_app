@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe 'Testing recipe views', type: :feature do
-  describe 'Recipe#index' do
+RSpec.describe 'Testing food views', type: :feature do
+  describe 'Food#index' do
     before(:each) do
-      user = User.create! name: 'Tom', email: 'tom@example.com', password: 'password'
-      (1..5).each { |i| user.recipes.create name: "Test Recipe #{i}", public: true, description: 'this is description', preparation_time: '1 hours', cooking_time: '1 days' }
+      user = User.create! name: 'Edi', email: 'edi@example.com', password: 'password'
+      (1..5).each { |i| user.foods.create name: "Test food #{i}", price: 10, measurement_unit: 'grams' }
       visit root_path
     end
 

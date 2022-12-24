@@ -1,4 +1,6 @@
-
+User.create!([
+    {name: 'John Doe', email: 'johndoe@email.com', password: 'password'}
+])
 
 Inventory.create!([
     {name: 'Fridge'},
