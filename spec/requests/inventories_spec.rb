@@ -4,7 +4,6 @@ RSpec.describe 'Inventories', type: :request do
   before :each do
     # @user = User.create(name: 'John Doe', email: 'johndoe@email.com', password: 'password')
     @inventory = Inventory.create(name: 'Fridge')
-
   end
 
   describe 'GET /index' do
